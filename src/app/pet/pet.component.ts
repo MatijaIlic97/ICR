@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {HomeComponent} from "../home/home.component";
 import {PetService} from "../pet.service";
 import {PetModel} from "../../models/pet.model";
 
