@@ -9,6 +9,6 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'icr';
+  title = 'ICR';
   year = new Date().getFullYear();
 }
