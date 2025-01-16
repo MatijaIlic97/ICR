@@ -14,7 +14,7 @@ export class PetComponent {
   public pet: PetModel;
 
   constructor(private route: ActivatedRoute, private petService: PetService) {
-    this.pet = petService.getPetsById(route.snapshot.params['id']-1);
+    this.pet = petService.getPetsById(route.snapshot.params['id'] - 1);
   }
 
 }

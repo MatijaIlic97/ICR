@@ -12,10 +12,10 @@ import {PetService} from "../pet.service";
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  public pets:PetModel[];
+  public pets: PetModel[];
 
   constructor(private petService: PetService) {
-    this.pets =petService.getAllPets()
+    this.pets = petService.getAllPets()
   }
 
 }
