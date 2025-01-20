@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {NgFor, NgIf} from "@angular/common";
 import {MessageModel} from "../models/message.model";
-import {RasaModel} from "../models/rasa.model";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule, HttpErrorResponse} from "@angular/common/http";
 import {ChatbotService} from "../services/chatbot.service";
@@ -72,7 +71,7 @@ export class AppComponent {
           rsp.map(msg => {
             // // Handle bot message (including images, flight cards, etc.)
             if (msg.image) {
-              return `<img src="${msg.image}" width="200">`;
+              return `<img src="${msg.image}" width="200" alt="${msg.image}">`;
             }
             // if (msg.attachment) {
             //   let html = '';
