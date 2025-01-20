@@ -1,3 +1,22 @@
-{{ pet.name }}
-{{ pet.id }}
-{{ pet.description }}
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-5">
+      <img src="{{pet.image}}" class="img-fluid rounded-start" alt="{{pet.name}}">
+    </div>
+    <div class="col-md-5">
+      <div class="card-body">
+        <h4 class="card-title">Name: {{ pet.name }}</h4>
+        <p class="card-text">Species: {{ pet.species }}</p>
+        <p class="card-text">Age: {{ pet.age }}</p>
+        <p class="card-text">Size: {{ pet.size }}</p>
+        <p class="card-text">Gender: {{ pet.gender }}</p>
+        <p class="card-text">Description: {{ pet.description }}</p>
+        <p class="card-text">Price: {{ pet.price }} EUR</p>
+        <p class="card-text">Score: {{ pet.score }}</p>
+      </div>
+    </div>
+    <div class="col-md-2 mb-5 mt-5">
+      <button class="btn-success"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+    </div>
+  </div>
+</div>

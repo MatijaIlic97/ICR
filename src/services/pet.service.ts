@@ -1,5 +1,6 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {PetModel} from "../models/pet.model";
+import {RasaModel} from "../models/rasa.model";
 
 @Injectable({
   providedIn: 'root'
