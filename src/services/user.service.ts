@@ -62,4 +62,12 @@ export class UserService {
       this.instance = new UserService()
     return this.instance
   }
+
+  public hasActive() {
+    return localStorage.getItem('active') != null
+  }
+
+  public getActive() {
+    return localStorage.getItem('active') ? localStorage.getItem('active') : 'N/A'
+  }
 }

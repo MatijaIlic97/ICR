@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
 import {NgFor, NgIf} from "@angular/common";
 import {MessageModel} from "../models/message.model";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule, HttpErrorResponse} from "@angular/common/http";
 import {ChatbotService} from "../services/chatbot.service";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-root',
@@ -18,11 +19,41 @@ export class AppComponent {
   year = new Date().getFullYear();
 
   chatbotService = ChatbotService.getInstance()
+  userService = UserService.getInstance()
   waitingForResponse = false
   isChatVisible = false
   userMessage: string = ''
   botThinkingPlaceholder = 'Thinking...'
-  messages: MessageModel[] = [{type: "bot", text: "How can i help?"}]
+  messages: MessageModel[] = []
+
+  // ViewChild to access the chat-body element directly
+  @ViewChild('chatBody', {static: false}) chatBody: ElementRef | undefined;
+
+  constructor(private router: Router, private route: ActivatedRoute) {
+  }
+
+  public doLogout() {
+    this.userService.logout()
+    this.router.navigate(['/login'], {relativeTo: this.route})
+  }
+
+  ngOnInit(): void {
+    // Check if there are any messages saved
+    if (!localStorage.getItem('messages')) {
+      localStorage.setItem('messages', JSON.stringify([
+        {type: 'bot', text: 'How can I help you?'}
+      ]));
+    }
+
+    this.messages = JSON.parse(localStorage.getItem('messages')!);
+  }
+
+  ngAfterViewChecked(): void {
+    // Scroll to bottom after view has been updated
+    if (this.chatBody) {
+      this.chatBody.nativeElement.scrollTop = this.chatBody.nativeElement.scrollHeight;
+    }
+  }
 
   toggleChat() {
     this.isChatVisible = !this.isChatVisible;
@@ -38,14 +69,13 @@ export class AppComponent {
         if (m.type == 'bot' && m.text == this.botThinkingPlaceholder) {
           m.text = message.text
           this.waitingForResponse = false
+          // Save messages in local storage
+          localStorage.setItem('messages', JSON.stringify(this.messages));
           return
         }
       }
     }
-
     this.messages.push(message);
-    // Save messages in local storage
-    localStorage.setItem('messages', JSON.stringify(this.messages));
   }
 
   sendMessage() {

@@ -26,16 +26,16 @@ class ActionHelloWorld(Action):
 
         return []
 
-class ActionPetList(Action):
-
-    def name(self) -> Text:
-        return "action_pet_list"
-
-    def run(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
-        data=
-        dispatcher.utter_message(text="Hello World!")
-
-        return []
+# class ActionPetList(Action):
+#
+#     def name(self) -> Text:
+#         return "action_pet_list"
+#
+#     def run(self, dispatcher: CollectingDispatcher,
+#             tracker: Tracker,
+#             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+#
+#         data=
+#         dispatcher.utter_message(text="Hello World!")
+#
+#         return []
