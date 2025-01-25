@@ -31,7 +31,7 @@ export class ChatbotService {
     const url = 'http://localhost:5005/webhooks/rest/webhook'
     return this.client.post<RasaModel[]>(url,
       {
-        sender:"user",
+        sender: "user",
         // sender: this.retrieveRasaSession(),
         // email: localStorage.getItem('active') ? localStorage.getItem('active') : null,
         message: value
