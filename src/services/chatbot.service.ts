@@ -1,6 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {RasaModel} from "../models/rasa.model";
+import {v4 as uuidv4} from 'uuid';
 
 
 @Injectable({
@@ -20,20 +21,19 @@ export class ChatbotService {
     return this.instance
   }
 
-  // private retrieveRasaSession() {
-  //   if (!localStorage.getItem('session'))
-  //     localStorage.setItem('session', uuidv4())
-  //
-  //   return localStorage.getItem('session')
-  // }
+  private retrieveRasaSession() {
+    if (!localStorage.getItem('session'))
+      localStorage.setItem('session', uuidv4())
+
+    return localStorage.getItem('session')
+  }
 
   public sendRasaMessage(value: string) {
     const url = 'http://localhost:5005/webhooks/rest/webhook'
     return this.client.post<RasaModel[]>(url,
       {
-        sender: "user",
-        // sender: this.retrieveRasaSession(),
-        // email: localStorage.getItem('active') ? localStorage.getItem('active') : null,
+        sender: this.retrieveRasaSession(),
+        email: localStorage.getItem('active') ? localStorage.getItem('active') : null,
         message: value
       },
       {

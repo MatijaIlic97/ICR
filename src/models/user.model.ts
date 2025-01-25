@@ -3,7 +3,7 @@ import {PetModel} from "./pet.model";
 export interface UserModel {
   email: string
   password: string
-  flights: UserOrderModel[]
+  pets: UserOrderModel[]
 }
 
 export interface UserOrderModel {

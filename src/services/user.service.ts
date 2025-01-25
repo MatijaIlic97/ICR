@@ -18,7 +18,7 @@ export class UserService {
     const user: UserModel = {
       email: 'matijailic@gmail.com',
       password: 'matija',
-      flights: []
+      pets: []
     }
 
     localStorage.setItem('users', JSON.stringify([user]))
@@ -37,6 +37,24 @@ export class UserService {
     }
 
     localStorage.setItem('active', active.email)
+  }
+
+  public logout() {
+    localStorage.removeItem('active')
+  }
+
+  public signup(email: string, password: string) {
+    if (!localStorage.getItem('users'))
+      this.createDefault()
+
+    const users: UserModel[] = JSON.parse(localStorage.getItem('users')!)
+    users.push({
+      email: email,
+      password: password,
+      pets: []
+    })
+
+    localStorage.setItem('users', JSON.stringify(users))
   }
 
   public static getInstance() {
