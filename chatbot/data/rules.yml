@@ -11,3 +11,8 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: Test testaction
+  steps:
+    - intent: test_action
+    - action: action_hello_world

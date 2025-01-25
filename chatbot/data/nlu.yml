@@ -89,3 +89,9 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+
+- intent: test_action
+  examples: |
+    - show me test action
+    - test action
+    - give me a test action response

@@ -4,8 +4,9 @@
       <img src="{{pet.image}}" class="card-img-top" alt="{{pet.name}}">
       <div class="card-body">
         <h5 class="card-title">{{ pet.name }}</h5>
-        <p class="card-text">{{ pet.species }}</p>
+        <p class="card-text">{{ pet.price }} EUR</p>
         <a routerLink="/pet/{{pet.id}}" class="btn btn-primary"><i class="fa-solid fa-paw"></i> View profile</a>
+        <button class="btn btn-success ms-3"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
       </div>
     </div>
   </div>
