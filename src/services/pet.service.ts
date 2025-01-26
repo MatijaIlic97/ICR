@@ -91,7 +91,7 @@ export class PetService {
         image: "sirko.jpg",
         name: "Sirko",
         price: 50,
-        score: 4,
+        score: 5,
         size: "S",
         species: "hamster"
       },
@@ -103,7 +103,7 @@ export class PetService {
         image: "chizl.jpg",
         name: "Chizzle",
         price: 60,
-        score: 4.5,
+        score: 5,
         size: "S",
         species: "hamster"
       },
@@ -115,7 +115,7 @@ export class PetService {
         image: "kokoreko.jpg",
         name: "Kokoreko",
         price: 80,
-        score: 4,
+        score: 5,
         size: "S",
         species: "bird"
       },
