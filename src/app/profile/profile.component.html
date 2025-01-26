@@ -1,1 +1,60 @@
-<p>profile works!</p>
+<div class="card mb-3 profile-card">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img [src]="['https://ui-avatars.com/api/?name='+userService.getActive()]" class="img-fluid rounded-start">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{userService.getActive()}}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto text-center mb-3">
+  <button type="button" class="btn btn-primary" (click)="doResetPassword()">
+    <i class="fa-solid fa-key"></i> Reset password
+  </button>
+</div>
+
+<table class="table table-striped" *ngIf=userService.getUserOrders()>
+  <thead>
+  <tr>
+    <th scope="col"><i class="fa-solid fa-paw"></i> Name</th>
+    <th scope="col"><i class="fa-solid fa-money-bills"></i> Price</th>
+    <th scope="col"><i class="fa-regular fa-circle-question"></i> Status</th>
+    <th scope="col"><i class="fa-solid fa-link"></i> Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let order of orders">
+    <td>{{petService.getPetNameById(order.id)}}</td>
+    <td>{{petService.getPetPriceById(order.id)}}</td>
+    <td>{{order.status.toUpperCase()}}</td>
+<!--    <td>-->
+<!--&lt;!&ndash;      <span *ngIf="order.rating == 'na'">N/A</span>&ndash;&gt;-->
+<!--&lt;!&ndash;      <i class="fa-solid fa-thumbs-up" *ngIf="order.rating == 'l'"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;      <i class="fa-solid fa-thumbs-down" *ngIf="order.rating == 'd'"></i>&ndash;&gt;-->
+<!--    </td>-->
+    <td>
+      <div class="btn-group">
+        <button (click)="details(order.id)" type="button" class="btn btn-sm btn-primary btn-table-sm">
+          <i class="fa-solid fa-up-right-from-square"></i> Details
+        </button>
+        <button (click)="pay(order)" type="button" class="btn btn-sm btn-success btn-table-sm"
+                *ngIf="order.status == 'reserved'">
+          <i class="fa-solid fa-money-bill"></i> Pay
+        </button>
+        <button (click)="rate(order)" type="button" class="btn btn-sm btn-secondary btn-table-sm"
+                *ngIf="order.status == 'paid' && order.rating == 0">
+          <i class="fa-solid fa-star"></i> Rate
+        </button>
+        <button (click)="cancel(order)" type="button" class="btn btn-sm btn-danger btn-table-sm"
+                *ngIf="order.status == 'reserved'">
+          <i class="fa-solid fa-ban"></i> Cancel
+        </button>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

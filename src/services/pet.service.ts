@@ -7,6 +7,8 @@ import {PetModel} from "../models/pet.model";
 export class PetService {
   public pets: PetModel[]
 
+  private static instance: PetService
+
   constructor() {
     this.pets = [
       {
@@ -132,11 +134,33 @@ export class PetService {
     ];
   }
 
+  public static getInstance() {
+    if (this.instance == undefined)
+      this.instance = new PetService()
+    return this.instance
+  }
+
   public getAllPets() {
     return this.pets;
   }
 
   public getPetsById(id: number) {
     return this.pets[id];
+  }
+
+  public getPetsByIds(ids: number[]) {
+    let petsToReturn:PetModel[] = [];
+    for (let num in ids){
+      petsToReturn.push(this.pets[num]);
+    }
+    return petsToReturn;
+  }
+
+  public getPetNameById(id: number) {
+    return this.pets[id].name;
+  }
+
+  public getPetPriceById(id: number) {
+    return this.pets[id].price;
   }
 }
