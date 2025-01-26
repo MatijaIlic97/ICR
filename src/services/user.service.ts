@@ -156,4 +156,32 @@ export class UserService {
     localStorage.setItem('users', JSON.stringify(users))
   }
 
+  public changeOrderRating(rating: number, order: UserOrderModel) {
+    if (!this.hasActive()) {
+      AlertService.error('Order failed to change', 'You need to be signed in to browse or change your orders!')
+      return
+    }
+
+    if (!localStorage.getItem('users'))
+      this.createDefault()
+
+    if (order.status !== 'paid') return // ovo je izuzetak, ne sme da se oceni dok nije placeno
+
+    const users: UserModel[] = JSON.parse(localStorage.getItem('users')!)
+    const active = users.find(u => u.email == this.getActive())
+
+    if (!active) {
+      AlertService.error('Order rating failed to change', 'You need to be signed in to browse or change your orders!')
+      return
+    }
+
+    active.pets.forEach(a => {
+      if (a.created == order.created) {
+        a.rating = rating
+      }
+    })
+
+    localStorage.setItem('users', JSON.stringify(users))
+  }
+
 }

@@ -1,11 +1,12 @@
 <div class="card mb-3 profile-card">
   <div class="row g-0">
     <div class="col-md-4">
-      <img [src]="['https://ui-avatars.com/api/?name='+userService.getActive()]" class="img-fluid rounded-start" alt="avatar">
+      <img [src]="['https://ui-avatars.com/api/?name='+userService.getActive()]" class="img-fluid rounded-start"
+           alt="avatar">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{userService.getActive()}}</h5>
+        <h5 class="card-title">{{ userService.getActive() }}</h5>
       </div>
     </div>
   </div>
@@ -24,18 +25,19 @@
     <th scope="col"><i class="fa-solid fa-money-bills"></i> Price</th>
     <th scope="col"><i class="fa-regular fa-circle-question"></i> Status</th>
     <th scope="col"><i class="fa-solid fa-link"></i> Actions</th>
+    <th scope="col"><i class="fa-solid fa-star"></i> Rating</th>
   </tr>
   </thead>
   <tbody>
   <tr *ngFor="let order of orders">
-    <td>{{petService.getPetNameById(order.id)}}</td>
-    <td>{{petService.getPetPriceById(order.id)}}</td>
-    <td>{{order.status.toUpperCase()}}</td>
-<!--    <td>-->
-<!--&lt;!&ndash;      <span *ngIf="order.rating == 'na'">N/A</span>&ndash;&gt;-->
-<!--&lt;!&ndash;      <i class="fa-solid fa-thumbs-up" *ngIf="order.rating == 'l'"></i>&ndash;&gt;-->
-<!--&lt;!&ndash;      <i class="fa-solid fa-thumbs-down" *ngIf="order.rating == 'd'"></i>&ndash;&gt;-->
-<!--    </td>-->
+    <td>{{ petService.getPetNameById(order.id) }}</td>
+    <td>{{ petService.getPetPriceById(order.id) }}</td>
+    <td>{{ order.status.toUpperCase() }}</td>
+    <!--    <td>-->
+    <!--&lt;!&ndash;      <span *ngIf="order.rating == 'na'">N/A</span>&ndash;&gt;-->
+    <!--&lt;!&ndash;      <i class="fa-solid fa-thumbs-up" *ngIf="order.rating == 'l'"></i>&ndash;&gt;-->
+    <!--&lt;!&ndash;      <i class="fa-solid fa-thumbs-down" *ngIf="order.rating == 'd'"></i>&ndash;&gt;-->
+    <!--    </td>-->
     <td>
       <div class="btn-group">
         <button (click)="details(order.id)" type="button" class="btn btn-sm btn-primary btn-table-sm">
@@ -55,6 +57,9 @@
         </button>
       </div>
     </td>
+    <td *ngIf="order.rating == 0"></td>
+    <td *ngIf="order.rating==5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+      class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></td>
   </tr>
   </tbody>
 </table>

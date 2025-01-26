@@ -157,10 +157,10 @@ export class PetService {
   }
 
   public getPetNameById(id: number) {
-    return this.pets[id].name;
+    return this.pets[id-1].name;
   }
 
   public getPetPriceById(id: number) {
-    return this.pets[id].price;
+    return this.pets[id-1].price;
   }
 }

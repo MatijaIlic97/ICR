@@ -64,23 +64,24 @@ export class ProfileComponent {
   public rate(order: UserOrderModel) {
     Swal.fire({
       title: 'Leave a rating',
-      text: 'Do you enjoy your pet?',
+      text: 'Rate your pet?',
       icon: 'question',
       showCancelButton: true,
-      showDenyButton: true,
-      confirmButtonText: '<i class="fa-solid fa-thumbs-up"></i>',
+      confirmButtonText:"<i class=\"fa-solid fa-star\"></i>" +
+        "<i class=\"fa-solid fa-star\"></i>" +
+        "<i class=\"fa-solid fa-star\"></i>" +
+        "<i class=\"fa-solid fa-star\"></i>" +
+        "<i class=\"fa-solid fa-star\"></i>",
       cancelButtonText: 'cancel',
-      denyButtonText: '<i class="fa-solid fa-thumbs-down"></i>',
       customClass: {
         popup: 'card',
-        confirmButton: 'btn btn-success',
-        denyButton: 'btn btn-danger',
+        // denyButton: 'btn btn-danger',
         cancelButton: 'btn btn-primary'
       }
     }).then(res => {
       if (res.isConfirmed) {
         // Korinsik je zadovoljan
-        // this.userService.changeOrderRating('l', order)
+        this.userService.changeOrderRating(5, order)
         this.loadOrders()
         return
       }
