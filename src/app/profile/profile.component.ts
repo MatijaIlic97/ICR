@@ -62,7 +62,6 @@ export class ProfileComponent {
   }
 
   public rate(order: UserOrderModel) {
-    // TODO: Implemenitrati rating
     Swal.fire({
       title: 'Leave a rating',
       text: 'Do you enjoy your pet?',
